@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <style>
     .container {
         text-align: center;
@@ -27,6 +27,13 @@
         padding: 25px;
         background: linear-gradient(to bottom, #9999ff 0%, #ff99cc 100%);
     }
+    .btn-save{
+        width:100px;
+        margin:auto;
+    }
+    #save{
+        padding:0.5rem 1rem;
+    }
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -39,109 +46,75 @@
 </head>
 <body>
 <div class = "container"  >
-<div class = " row align-items-center" id = "sortable">
-    <div class = "col-md-3 " >
-        <div class = "slide">
-        <h1 >1</h1>
-        </div>
-      
-    </div>
-    <div class = "col-md-3 " >
-        <div class = "slide">
-        <h1>2</h1>
-        </div>
-      
-    </div>
-    <div class = "col-md-3 " >
-        <div class = "slide">
-        <h1>3</h1>
-        </div>
-     
-    </div>
-    <div class = "col-md-3 " >
-        <div class = "slide">
-        <h1>4</h1>
-        </div>
-  
-    </div>
-
-
-
-    <div class = "col-md-3 " >
-        <div class = "slide">
-        <h1>5</h1>
-        </div>
-       
-    </div>
-    <div class = "col-md-3 " >
-        <div class = "slide">
-        <h1>6</h1>
-        </div>
-     
-    </div>
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>7</h1>
-        </div>
-        
-    </div>
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>8</h1>
-        </div>
-      
-    </div>
-   
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>9</h1>
-        </div>
-      
-    </div>
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>10</h1>
-        </div>
-      
-    </div>
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>11</h1>
-        </div>
-      
-    </div>
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>12</h1>
-        </div>
-      
-    </div>
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>13</h1>
-        </div>
-      
-    </div>
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>14</h1>
-        </div>
-      
-    </div>
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>15</h1>
-        </div>
-      
-    </div>
-    <div class = "col-md-3" >
-        <div class = "slide">
-        <h1>16</h1>
-        </div>
-      
-    </div>
+    <div class = " row align-items-center charts"  id = "sortable"></div>
 </div>
+<div class = "row btn-save">
+    <button id = "save" class = "btn btn-primary" onclick="savefn()">Save</button>
 </div>
+<div class = "row" id = "displayids">
+ 
+</div>
+<script>
+   function savefn() {
+    var ids1 = $('.charts .chart').map(function(){
+    return this.id
+    
+
+    
+}).get()
+let textlist = ""
+
+ids1.map(id => textlist=textlist+"  ,  "+id)
+
+document.getElementById('displaytext').innerHTML = textlist
+
+}
+order = [{id : " one", value:1}, {id :"two" ,value :2}, {id :"three",value :3}, {id:"four",value:4}, {id:"five",value :5},{id:"six",value:6}, {id: "seven",value:7}, {id:"eight",value:8}, {id:"nine",value:9}, {id: "ten",value:10}, {id:"eleven",value:11}, {id:"twelve",value:12}, {id:"thirteen",value:13}, {id:"fourteen",value:14}, {id:"fifteen",value:"15"}, {id:"sixteen",value:"16"}];
+let main = document.getElementById('sortable')
+
+// let colDiv = document.createElement("div")
+// colDiv.className = "col-md-3 chart"
+
+
+order.map(o => {
+    let colDiv = document.createElement("div")
+    colDiv.className = "col-md-3 chart"
+    colDiv.id = o.id
+    // val.appendChild(colDive);
+    let slidediv = document.createElement("div")
+    slidediv.className = "slide"
+    let text = document.createTextNode(o.value)
+    let htag = document.createElement('h1')
+    htag.appendChild(text)
+    slidediv.appendChild(htag)
+    colDiv.appendChild(slidediv)
+    main.appendChild(colDiv)
+    
+    
+
+
+})
+
+ var ids = $('.charts .chart').map(function(){
+    return this.id
+}).get()
+
+
+
+    let displayEle = document.getElementById('displayids')
+    let divElement = document.createElement('h2');
+    divElement.id = "displaytext"
+    let idlist = ""
+    ids.map(id => idlist=idlist+"  ,  "+id)
+    let text = document.createTextNode(idlist);
+    divElement.appendChild(text)
+    displayEle.appendChild(divElement)
+
+
+
+
+ 
+</script>
  
 </body>
 </html>
