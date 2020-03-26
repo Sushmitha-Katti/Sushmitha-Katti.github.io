@@ -16,10 +16,10 @@
   <style>
     .container {
         text-align: center;
-        width:500px;
+        
     }
     .slide{
-        width:100px;
+        
         height:100px;
         border: 1px solid #dadada;
         margin:1rem;
@@ -46,15 +46,38 @@
 </head>
 <body>
 <div class = "container"  >
-    <div class = " row align-items-center charts"  id = "sortable"></div>
+    <div class = "row">
+        <div class = "col-md-6">
+                <div class = " row  charts"  id = "sortable"></div>
+                
+                <div class = "row btn-save">
+                    <button id = "save" class = "btn btn-primary" onclick="savefn()">Save</button>
+                </div>
+                <div class = "row" id = "displayids">
+                
+                </div>
+        </div>
+        <div class = "col-md-6">
+            <div class="form-group">
+                <h1> Enter here to change column size</h1>
+                <select class="custom-select " id = "ele-select" onchange = "chooseCol()" required>
+                  <option value="">Open this select menu</option>
+
+                </select>
+                <div class="invalid-feedback">Select Id</div>
+              </div>
+            <div class="form-group">
+                <label>Enter No Of columns(Between 1 and 12)</label>
+                <input type="number" class="form-control" id="col-chooser" min = "1" max = "12">
+                <div class="invalid-feedback">enter value between 1 and 12</div>
+            </div>
+            <button class="btn btn-primary" type="submit" onclick="changeCol()">Change</button>
+        </div>
+    </div>
 </div>
-<div class = "row btn-save">
-    <button id = "save" class = "btn btn-primary" onclick="savefn()">Save</button>
-</div>
-<div class = "row" id = "displayids">
- 
-</div>
+
 <script>
+//---------------------------Function to Save--------------------------------------------------------------------------- 
    function savefn() {
     var ids1 = $('.charts .chart').map(function(){
     return this.id
@@ -69,6 +92,8 @@ ids1.map(id => textlist=textlist+"  ,  "+id)
 document.getElementById('displaytext').innerHTML = textlist
 
 }
+
+//---------------------------------------Whole Elements organisation---------------------------------------
 order = [{id : " one", value:1}, {id :"two" ,value :2}, {id :"three",value :3}, {id:"four",value:4}, {id:"five",value :5},{id:"six",value:6}, {id: "seven",value:7}, {id:"eight",value:8}, {id:"nine",value:9}, {id: "ten",value:10}, {id:"eleven",value:11}, {id:"twelve",value:12}, {id:"thirteen",value:13}, {id:"fourteen",value:14}, {id:"fifteen",value:"15"}, {id:"sixteen",value:"16"}];
 let main = document.getElementById('sortable')
 
@@ -95,11 +120,13 @@ order.map(o => {
 
 })
 
+//------------------------------------------Ids Extraction----------------------------------------------------
+
  var ids = $('.charts .chart').map(function(){
     return this.id
 }).get()
 
-
+//--------------------------------------Display IDS--------------------------------------------------------
 
     let displayEle = document.getElementById('displayids')
     let divElement = document.createElement('h2');
@@ -110,7 +137,41 @@ order.map(o => {
     divElement.appendChild(text)
     displayEle.appendChild(divElement)
 
+//---------------------------------------Change ClassName------------------------------------------------------
 
+    let selectEle = document.getElementById("ele-select") ;
+    
+    ids.map(id => {
+
+    let optionEle = document.createElement('option')
+    optionEle.value = id;
+    
+    let text = document.createTextNode(id);
+    optionEle.appendChild(text);
+    selectEle.appendChild(optionEle);
+
+    })
+
+//--------------------------------------------Choose Element and Insert the default column number to input---------------------------------------------------------
+function chooseCol(){
+  var selectItem = document.getElementById("ele-select").value;
+//   var classNames = $('.charts .chart').map(function(){
+//     return this.className.split(" ")[0]
+// }).get()
+var Item = document.getElementById(selectItem).className.split(" ")[0]
+
+document.getElementById("col-chooser").value = parseInt(Item.split("-").slice(-1)[0])
+}
+
+//----------------------------------------------Channge Col size After Submit-------------------------------------
+
+function changeCol(){
+    var selectItem = document.getElementById("ele-select").value;
+    var newClass = "col-md-"+document.getElementById("col-chooser").value;
+    var OldClass = document.getElementById(selectItem).className;
+    // console.log(OldClass,newClass)
+    document.getElementById(selectItem).className = OldClass.replace(OldClass.split(" ")[0],newClass)
+}
 
 
  
