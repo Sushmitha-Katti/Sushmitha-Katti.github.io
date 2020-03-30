@@ -18,14 +18,16 @@
         text-align: center;
         
     }
+    
     .slide{
         
-        height:100px;
+        height: 100px;
         border: 1px solid #dadada;
-        margin:1rem;
+        margin:16px;
         text-align: center;
         padding: 25px;
         background: linear-gradient(to bottom, #9999ff 0%, #ff99cc 100%);
+        
     }
     .btn-save{
         width:100px;
@@ -37,17 +39,19 @@
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
   <script>
   $( function() {
     $( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
   } );
+
   </script>
 </head>
 <body>
 <div class = "container"  >
     <div class = "row">
-        <div class = "col-md-6">
+        <div class = "col-md-6" id = "main-column">
                 <div class = " row  charts"  id = "sortable"></div>
                 
                 <div class = "row btn-save">
@@ -57,23 +61,7 @@
                 
                 </div>
         </div>
-        <div class = "col-md-6">
-            <div class="form-group">
-                <h1> Enter here to change column size</h1>
-                <select class="custom-select " id = "ele-select" onchange = "chooseCol()" required>
-                  <option value="">Open this select menu</option>
-
-                </select>
-                <div class="invalid-feedback">Select Id</div>
-              </div>
-            <div class="form-group">
-                <label>Enter No Of columns(Between 1 and 12)</label>
-                <input type="number" class="form-control" id="col-chooser" min = "1" max = "12">
-                <div class="invalid-feedback">enter value between 1 and 12</div>
-            </div>
-            <button class="btn btn-primary" type="submit" onclick="changeCol()">Change</button>
-        </div>
-    </div>
+        
 </div>
 
 <script>
@@ -108,6 +96,7 @@ order.map(o => {
     // val.appendChild(colDive);
     let slidediv = document.createElement("div")
     slidediv.className = "slide"
+    slidediv.id = "slide-"+o.id
     let text = document.createTextNode(o.value)
     let htag = document.createElement('h1')
     htag.appendChild(text)
@@ -137,45 +126,46 @@ order.map(o => {
     divElement.appendChild(text)
     displayEle.appendChild(divElement)
 
-//---------------------------------------Change ClassName------------------------------------------------------
 
-    let selectEle = document.getElementById("ele-select") ;
-    
-    ids.map(id => {
 
-    let optionEle = document.createElement('option')
-    optionEle.value = id;
-    
-    let text = document.createTextNode(id);
-    optionEle.appendChild(text);
-    selectEle.appendChild(optionEle);
+//-------------------------------- Resizable  Function---------------------------------------
+$(document).ready(function(){
+    $( ".chart" ).resizable({
+        start:function(event,ui){
+        
+        },
+        
+        resize:function(event,ui){
+            var a = ui.originalElement.outerWidth()-ui.originalElement.width()
+            var b = ui.size.width+a
+            var unit = $("#main-column").width()
+            var divv = parseInt((b/unit)*12,);
+            var newvalue = "col-md-"+divv;
+            var old = ui.originalElement.context.className
+            ui.element.context.className = old.replace(old.split(" ")[0],newvalue)
+            
 
-    })
 
-//--------------------------------------------Choose Element and Insert the default column number to input---------------------------------------------------------
-function chooseCol(){
-  var selectItem = document.getElementById("ele-select").value;
-//   var classNames = $('.charts .chart').map(function(){
-//     return this.className.split(" ")[0]
-// }).get()
-var Item = document.getElementById(selectItem).className.split(" ")[0]
+        },
+        stop:function(event,ui){
+            var oldheight = parseInt($("#slide-"+ui.element.context.id).css("height").replace("px", ""))
+            var hofparent = parseInt(ui.originalSize.height)
+            var newhofparent = parseInt(ui.size.height)
+            var newheight = newhofparent - hofparent +oldheight
+            console.log(newheight,oldheight,hofparent,newhofparent )
+            $("#slide-"+ui.element.context.id).css("height", newheight+"px")
 
-document.getElementById("col-chooser").value = parseInt(Item.split("-").slice(-1)[0])
-}
+        }
+    });
 
-//----------------------------------------------Channge Col size After Submit-------------------------------------
-
-function changeCol(){
-    var selectItem = document.getElementById("ele-select").value;
-    var newClass = "col-md-"+document.getElementById("col-chooser").value;
-    var OldClass = document.getElementById(selectItem).className;
-    // console.log(OldClass,newClass)
-    document.getElementById(selectItem).className = OldClass.replace(OldClass.split(" ")[0],newClass)
-}
+});
 
 
  
 </script>
+
+    
+    
  
 </body>
 </html>
