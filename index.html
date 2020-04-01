@@ -52,7 +52,7 @@
 <div class = "container"  >
     <div class = "row">
         <div class = "col-md-6" id = "main-column">
-                <div class = " row  charts"  id = "sortable"></div>
+                <div class = "row  charts"  id = "sortable"></div>
                 
                 <div class = "row btn-save">
                     <button id = "save" class = "btn btn-primary" onclick="savefn()">Save</button>
@@ -82,7 +82,7 @@ document.getElementById('displaytext').innerHTML = textlist
 }
 
 //---------------------------------------Whole Elements organisation---------------------------------------
-order = [{id : " one", value:1,class : "col-md-3"}, {id :"two" ,value :2,class : "col-md-3"}, {id :"three",value :3,class : "col-md-3"}, {id:"four",value:4,class : "col-md-3"}, {id:"five",value :5,class : "col-md-3"},{id:"six",value:6,class : "col-md-3"}, {id: "seven",value:7,class : "col-md-3"}, {id:"eight",value:8,class : "col-md-3"}, {id:"nine",value:9,class : "col-md-3"}, {id: "ten",value:10,class : "col-md-3"}, {id:"eleven",value:11,class : "col-md-3"}, {id:"twelve",value:12,class : "col-md-3"}, {id:"thirteen",value:13,class : "col-md-3"}, {id:"fourteen",value:14,class : "col-md-3"}, {id:"fifteen",value:"15",class : "col-md-3"}, {id:"sixteen",value:"16",class : "col-md-3"}];
+order = [{id : "one", value:1,class : "col-md-3"}, {id :"two" ,value :2,class : "col-md-3"}, {id :"three",value :3,class : "col-md-3"}, {id:"four",value:4,class : "col-md-3"}, {id:"five",value :5,class : "col-md-3"},{id:"six",value:6,class : "col-md-3"}, {id: "seven",value:7,class : "col-md-3"}, {id:"eight",value:8,class : "col-md-3"}, {id:"nine",value:9,class : "col-md-3"}, {id: "ten",value:10,class : "col-md-3"}, {id:"eleven",value:11,class : "col-md-3"}, {id:"twelve",value:12,class : "col-md-3"}, {id:"thirteen",value:13,class : "col-md-3"}, {id:"fourteen",value:14,class : "col-md-3"}, {id:"fifteen",value:"15",class : "col-md-3"}, {id:"sixteen",value:"16",class : "col-md-3"}];
 let main = document.getElementById('sortable')
 
 // let colDiv = document.createElement("div")
@@ -142,7 +142,7 @@ $(document).ready(function(){
             var divv = parseInt((b/unit)*12,);
             var newvalue = "col-md-"+divv;
             var old = ui.originalElement.context.className
-            ui.element.context.className = old.replace(old.split(" ")[0],newvalue)
+            // ui.element.context.className = old.replace(old.split(" ")[0],newvalue)
             
 
 
@@ -151,9 +151,9 @@ $(document).ready(function(){
             var oldheight = parseInt($("#slide-"+ui.element.context.id).css("height").replace("px", ""))
             var hofparent = parseInt(ui.originalSize.height)
             var newhofparent = parseInt(ui.size.height)
-            var newheight = newhofparent - hofparent +oldheight
+            var newheight = newhofparent - 20
             console.log(newheight,oldheight,hofparent,newhofparent )
-            $("#slide-"+ui.element.context.id).css("height", newheight+"px")
+             $("#slide-"+ui.element.context.id).css("height", newheight+"px")
 
         }
     });
