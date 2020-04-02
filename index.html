@@ -18,10 +18,14 @@
         text-align: center;
         
     }
+    .chart{
+        border: 1px solid black;
+        margin: 10px;
+    }
     
     .slide{
         
-        height: 100px;
+        /* height: 100px; */
         border: 1px solid #dadada;
         margin:16px;
         text-align: center;
@@ -71,7 +75,7 @@
 //---------------------------Function to Save--------------------------------------------------------------------------- 
    function savefn() {
     var ids1 = $('.charts .chart').map(function(){
-    return {id: this.id, class : this.class,value: this.textContent}
+    return {id: this.id, class : this.class.split(" ")[0]+this.class.split(" ")[1],value: this.textContent,}
     
 
     
@@ -85,7 +89,7 @@ document.getElementById('displaytext').innerHTML = textlist
 }
 
 //---------------------------------------Whole Elements organisation---------------------------------------
-order = [{id : "one", value:1,class : "col-md-3 float-left"}, {id :"two" ,value :2,class : "col-md-3 float-left"}, {id :"three",value :3,class : "col-md-3 float-left"}, {id:"four",value:4,class : "col-md-3 float-left"}, {id:"five",value :5,class : "col-md-3 float-left"},{id:"six",value:6,class : "col-md-3 float-left"}, {id: "seven",value:7,class : "col-md-3 float-left"}, {id:"eight",value:8,class : "col-md-3 float-left"}, {id:"nine",value:9,class : "col-md-3 float-left"}, {id: "ten",value:10,class : "col-md-3 float-left"}, {id:"eleven",value:11,class : "col-md-3 float-left"}, {id:"twelve",value:12,class : "col-md-3 float-left"}, {id:"thirteen",value:13,class : "col-md-3 float-left"}, {id:"fourteen",value:14,class : "col-md-3 float-left"}, {id:"fifteen",value:"15",class : "col-md-3 float-left"}, {id:"sixteen",value:"16",class : "col-md-3 float-left"}];
+order = [{id : "one", value:1,class : "col-md-3 float-left",height: "130"}, {id :"two" ,value :2,class : "col-md-3 float-left",height: "130"}, {id :"three",value :3,class : "col-md-3 float-left",height: "130"}, {id:"four",value:4,class : "col-md-3 float-left",height: "130"}, {id:"five",value :5,class : "col-md-3 float-left",height: "130"},{id:"six",value:6,class : "col-md-3 float-left",height: "130"}, {id: "seven",value:7,class : "col-md-3 float-left",height: "130"}, {id:"eight",value:8,class : "col-md-3 float-left",height: "130"}, {id:"nine",value:9,class : "col-md-3 float-left",height: "130"}, {id: "ten",value:10,class : "col-md-3 float-left",height: "130"}, {id:"eleven",value:11,class : "col-md-3 float-left",height: "130"}, {id:"twelve",value:12,class : "col-md-3 float-left",height: "130"}, {id:"thirteen",value:13,class : "col-md-3 float-left",height: "130"}, {id:"fourteen",value:14,class : "col-md-3 float-left",height: "130"}, {id:"fifteen",value:"15",class : "col-md-3 float-left",height: "130"}, {id:"sixteen",value:"16",class : "col-md-3 float-left",height: "130"}];
 let main = document.getElementById('sortable')
 
 // let colDiv = document.createElement("div")
@@ -93,6 +97,7 @@ let main = document.getElementById('sortable')
 
 
 order.map(o => {
+
     let colDiv = document.createElement("div")
     colDiv.className = o.class+" chart"
     colDiv.id = o.id
@@ -100,6 +105,10 @@ order.map(o => {
     let slidediv = document.createElement("div")
     slidediv.className = "slide"
     slidediv.id = "slide-"+o.id
+    colDiv.style.height = o.height+"px"
+    // colDiv.style.width = o.width+"px"
+    slidediv.style.height = (o.height-30)+"px"
+    // slidediv.style.width = (o.width-30)+"px"
     let text = document.createTextNode(o.value)
     let htag = document.createElement('h1')
     htag.appendChild(text)
@@ -146,7 +155,7 @@ $(document).ready(function(){
             var newvalue = "col-md-"+divv;
             var old = ui.originalElement.context.className
             ui.element.context.className = old.replace(old.split(" ")[0],newvalue)
-            console.log(newvalue)
+            // console.log(newvalue)
             
 
 
@@ -155,15 +164,37 @@ $(document).ready(function(){
             var oldheight = parseInt($("#slide-"+ui.element.context.id).css("height").replace("px", ""))
             var hofparent = parseInt(ui.originalSize.height)
             var newhofparent = parseInt(ui.size.height)
-            var newheight = newhofparent - 20
-            console.log(newheight,oldheight,hofparent,newhofparent )
+            var absolute = Math.ceil(newhofparent/130)
+            
+            var finalnewheight = absolute*130 +(absolute-1)*10*2
+            console.log("adsfdf",hofparent,newhofparent,absolute,finalnewheight)
+            var newheight = finalnewheight - 30
+            // console.log(newheight,oldheight,hofparent,newhofparent )
              $("#slide-"+ui.element.context.id).css("height", newheight+"px")
+             $("#"+ui.element.context.id).css("height", finalnewheight+"px")
 
         }
     });
 
 });
 
+// --------------------------------------Reset the changes on Double Click On the Element-----------------------------------------------------
+$(".chart").dblclick(function(event) { 
+                if(event.target.className.split(" ").indexOf("chart")>=0){
+                id = event.target.id
+               
+                o = order.filter(o => o.id == id )
+               
+                $("#"+id).css("height",o[0].height+"px")
+                // $("#"+id).css("width",o[0].width+"px")
+                var oldclass = event.target.className
+                // console.log(oldclass)
+                event.target.className = oldclass.replace(oldclass.split(" ")[0],o[0].class.split(" ")[0])
+                $("#slide-"+id).css("height",(o[0].height-30)+"px")
+               
+                }
+                
+            }); 
 
  
 </script>
