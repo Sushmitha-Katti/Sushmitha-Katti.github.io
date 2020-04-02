@@ -75,7 +75,8 @@
 //---------------------------Function to Save--------------------------------------------------------------------------- 
    function savefn() {
     var ids1 = $('.charts .chart').map(function(){
-    return {id: this.id, class : this.class.split(" ")[0]+this.class.split(" ")[1],value: this.textContent,}
+    
+    return {id: this.id, class : this.className.split(" ")[0]+this.className.split(" ")[1],value: this.textContent,height:this.style.height}
     
 
     
@@ -83,7 +84,7 @@
 let textlist = ""
 
 ids1.map(id => textlist=textlist+"  ,  "+id.id)
-
+console.log(ids1)
 document.getElementById('displaytext').innerHTML = textlist
 
 }
