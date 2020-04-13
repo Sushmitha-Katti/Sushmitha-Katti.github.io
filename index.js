@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     {
         
-      console.log(Object.keys(graphs)[0])
+    
       let collapse = document.createElement("h5")
       collapse.className ="collapse-button";
       
@@ -100,7 +100,7 @@ function checkfunc(e){
  function applyresize(element){
 element.resizable({
     start:function(event,ui){
-        console.log(ui)
+      
     
     },
     
