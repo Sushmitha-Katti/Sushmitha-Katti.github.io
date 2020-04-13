@@ -13,6 +13,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src = "./index.js"></script>
   <style>
     .container {
         text-align: center;
@@ -55,10 +56,11 @@
 <body>
 <div class = "container"  >
     <div class = "row">
+        <div class = "col-md-6" id = "acordian"  >
+
+        </div>
         <div class = "col-md-6" id = "main-column">
-                <div class = "row d-block charts"  id = "sortable"></div>
-                
-               
+                <div class = "row d-block charts"  id = "sortable"></div>     
         </div>
         
         
@@ -90,37 +92,7 @@ document.getElementById('displaytext').innerHTML = textlist
 }
 
 //---------------------------------------Whole Elements organisation---------------------------------------
-order = [{id : "one", value:1,class : "col-md-3 float-left",height: "130"}, {id :"two" ,value :2,class : "col-md-3 float-left",height: "130"}, {id :"three",value :3,class : "col-md-3 float-left",height: "130"}, {id:"four",value:4,class : "col-md-3 float-left",height: "130"}, {id:"five",value :5,class : "col-md-3 float-left",height: "130"},{id:"six",value:6,class : "col-md-3 float-left",height: "130"}, {id: "seven",value:7,class : "col-md-3 float-left",height: "130"}, {id:"eight",value:8,class : "col-md-3 float-left",height: "130"}, {id:"nine",value:9,class : "col-md-3 float-left",height: "130"}, {id: "ten",value:10,class : "col-md-3 float-left",height: "130"}, {id:"eleven",value:11,class : "col-md-3 float-left",height: "130"}, {id:"twelve",value:12,class : "col-md-3 float-left",height: "130"}, {id:"thirteen",value:13,class : "col-md-3 float-left",height: "130"}, {id:"fourteen",value:14,class : "col-md-3 float-left",height: "130"}, {id:"fifteen",value:"15",class : "col-md-3 float-left",height: "130"}, {id:"sixteen",value:"16",class : "col-md-3 float-left",height: "130"}];
-let main = document.getElementById('sortable')
 
-// let colDiv = document.createElement("div")
-// colDiv.className = "col-md-3 float-left chart"
-
-
-order.map(o => {
-
-    let colDiv = document.createElement("div")
-    colDiv.className = o.class+" chart"
-    colDiv.id = o.id
-    // val.appendChild(colDive);
-    let slidediv = document.createElement("div")
-    slidediv.className = "slide"
-    slidediv.id = "slide-"+o.id
-    colDiv.style.height = o.height+"px"
-    // colDiv.style.width = o.width+"px"
-    slidediv.style.height = (o.height-30)+"px"
-    // slidediv.style.width = (o.width-30)+"px"
-    let text = document.createTextNode(o.value)
-    let htag = document.createElement('h1')
-    htag.appendChild(text)
-    slidediv.appendChild(htag)
-    colDiv.appendChild(slidediv)
-    main.appendChild(colDiv)
-    
-    
-
-
-})
 
 //------------------------------------------Ids Extraction----------------------------------------------------
 
@@ -142,42 +114,9 @@ order.map(o => {
 
 
 //-------------------------------- Resizable  Function---------------------------------------
-$(document).ready(function(){
-    $( ".chart" ).resizable({
-        start:function(event,ui){
-        
-        },
-        
-        resize:function(event,ui){
-            var a = ui.originalElement.outerWidth()-ui.originalElement.width()
-            var b = ui.size.width+a
-            var unit = $("#main-column").width()
-            var divv = parseInt((b/unit)*12,);
-            var newvalue = "col-md-"+divv;
-            var old = ui.originalElement.context.className
-            ui.element.context.className = old.replace(old.split(" ")[0],newvalue)
-            // console.log(newvalue)
-            
-
-
-        },
-        stop:function(event,ui){
-            var oldheight = parseInt($("#slide-"+ui.element.context.id).css("height").replace("px", ""))
-            var hofparent = parseInt(ui.originalSize.height)
-            var newhofparent = parseInt(ui.size.height)
-            var absolute = Math.ceil(newhofparent/130)
-            
-            var finalnewheight = absolute*130 +(absolute-1)*10*2
-            console.log("adsfdf",hofparent,newhofparent,absolute,finalnewheight)
-            var newheight = finalnewheight - 30
-            // console.log(newheight,oldheight,hofparent,newhofparent )
-             $("#slide-"+ui.element.context.id).css("height", newheight+"px")
-             $("#"+ui.element.context.id).css("height", finalnewheight+"px")
-
-        }
-    });
-
-});
+// $(document).ready(function(){
+    
+// });
 
 // --------------------------------------Reset the changes on Double Click On the Element-----------------------------------------------------
 $(".chart").dblclick(function(event) { 
@@ -205,3 +144,4 @@ $(".chart").dblclick(function(event) {
  
 </body>
 </html>
+
