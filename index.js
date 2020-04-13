@@ -1,25 +1,53 @@
-graphs = [{id : "one", value:1,class : "checkinput",height: "130"}, {id :"two" ,value :2,class : "checkinput",height: "130"}, {id :"three",value :3,class : "checkinput",height: "130"}, {id:"four",value:4,class : "checkinput",height: "130"}, {id:"five",value :5,class : "checkinput",height: "130"},{id:"six",value:6,class : "checkinput",height: "130"}, {id: "seven",value:7,class : "checkinput",height: "130"}, {id:"eight",value:8,class : "checkinput",height: "130"}, {id:"nine",value:9,class : "checkinput",height: "130"}, {id: "ten",value:10,class : "checkinput",height: "130"}, {id:"eleven",value:11,class : "checkinput",height: "130"}, {id:"twelve",value:12,class : "checkinput",height: "130"}, {id:"thirteen",value:13,class : "checkinput",height: "130"}, {id:"fourteen",value:14,class : "checkinput",height: "130"}, {id:"fifteen",value:"15",class : "checkinput",height: "130"}, {id:"sixteen",value:"16",class : "checkinput",height: "130"}];
+reports = [
+    {Report1:[{id : "one", value:1,class : "checkinput",height: "130"},{id :"two" ,value :2,class : "checkinput",height: "130"}, {id :"three",value :3,class : "checkinput",height: "130"}, {id:"four",value:4,class : "checkinput",height: "130"}]},
+    {Report2:[{id:"five",value :5,class : "checkinput",height: "130"},{id:"six",value:6,class : "checkinput",height: "130"}, {id: "seven",value:7,class : "checkinput",height: "130"}, {id:"eight",value:8,class : "checkinput",height: "130"}]},
+    {Report3:[{id:"nine",value:9,class : "checkinput",height: "130"}, {id: "ten",value:10,class : "checkinput",height: "130"}, {id:"eleven",value:11,class : "checkinput",height: "130"}, {id:"twelve",value:12,class : "checkinput",height: "130"}]},
+    {Report4:[{id:"thirteen",value:13,class : "checkinput",height: "130"}, {id:"fourteen",value:14,class : "checkinput",height: "130"}, {id:"fifteen",value:"15",class : "checkinput",height: "130"}, {id:"sixteen",value:"16",class : "checkinput",height: "130"}]}
+];
 
 $(document).ready(function(){
     var main = document.getElementById("acordian");
 
-    graphs.map(graph=>{
-        let check = document.createElement("input")
-    check.className = graph.class
-    check.id = graph.id
-    check.type = "checkbox"
-    check.name = "check"
-    check.value = graph.value
-    check.addEventListener("change", checkfunc);
-    let label = document.createElement("label")
-    let text = document.createTextNode(graph.value)
-    let breaktag = document.createElement("br")
-    label.appendChild(text)
-    main.appendChild(check)
-    main.appendChild(label)
-    main.appendChild(breaktag)
-    
-    });
+   reports.map(graphs=>
+
+    {
+        
+      console.log(Object.keys(graphs)[0])
+      let collapse = document.createElement("h5")
+      collapse.className ="collapse-button";
+      
+      collapse.setAttribute( "data-toggle","collapse" )
+      collapse.setAttribute( "data-target","#collapse"+Object.keys(graphs)[0] )
+      let reportText = document.createTextNode(Object.keys(graphs)[0])
+     
+      let card = document.createElement("div")
+      card.className = "collapse"
+      card.id = "collapse"+Object.keys(graphs)[0]
+      collapse.appendChild(reportText)
+      main.appendChild(collapse)
+      main.appendChild(card)
+
+        Object.values(graphs)[0].map(graph =>
+
+            {
+                
+            let check = document.createElement("input")
+            check.className = graph.class
+            check.id = graph.id
+            check.type = "checkbox"
+            check.name = "check"
+            check.value = graph.value
+            check.addEventListener("change", checkfunc);
+            let label = document.createElement("label")
+            let text = document.createTextNode(graph.value)
+            let breaktag = document.createElement("br")
+            label.appendChild(text)
+            card.appendChild(check)
+            card.appendChild(label)
+            card.appendChild(breaktag)
+        
+        })
+  });
 
 orders = []
 function checkfunc(e){
