@@ -127,7 +127,7 @@ element.resizable({
         // console.log("adsfdf",hofparent,newhofparent,absolute,finalnewheight)
         var newheight = finalnewheight - 30
         // console.log(newheight,oldheight,hofparent,newhofparent )
-        console.log(ui.element.context.id)
+
          $("#slide-"+ui.element.context.id).css("height", newheight+"px")
          $("#"+ui.element.context.id).css("height", finalnewheight+"px")
 
