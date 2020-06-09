@@ -7,21 +7,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI Sortable - Display as grid</title>
+  <meta name="description" content="Custom Reports">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+        <!-- Call App Mode on ios devices -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- Remove Tap Highlight on Windows Phone IE -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- base css -->
+        <link rel="stylesheet" media="screen, print" href="static/css/vendors.bundle.css">
+        <link rel="stylesheet" media="screen, print" href="static/css/app.bundle.css">
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="apple-touch-icon" sizes="180x180" href="static/img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon/favicon-32x32.png">
+        <link rel="mask-icon" href="static/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
     
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+  <script src=".Static/js/vendors.bundle.js"></script>
+  <script src="Static/js/app.bundle.js"></script>
   <script src = "./index.js"></script>
+  
+
+
   
   <style>
     .container {
@@ -52,16 +67,24 @@
     }
     .collapse-button{
 
-        font-weight: bolder;
-        border: 1px solid black;
-        background-color: #faf6f6;
+        
+        border-bottom: 1px solid #dadada;
+        padding: 5px 0px;
         cursor: pointer;
 
     }
     #acordian{
-        border-right: 3px solid black;
+        border-right: 2px solid #adadad;
         height: 100vh;
         overflow: auto;
+        padding : 0px 10px;
+    }
+    .fa-plus{
+    margin-right: 10px;
+    
+    }
+    .collapse-button{
+        font-weight: bold;
     }
 
   </style>
@@ -76,13 +99,17 @@
   </script>
 </head>
 <body>
-<div class = "container"  >
+<div style ="margin:1rem; "  >
+
+    <div class = "row">
+        <h2>Custom Reports</h2>
+    </div>
     
     <div class = "row">
-        <div class = "col-md-6" id = "acordian"  >
+        <div class = "col-md-4" id = "acordian"  >
 
         </div>
-        <div class = "col-md-6" id = "main-column">
+        <div class = "col-md-8" id = "main-column">
                 <div class = "row d-block charts"  id = "sortable"></div>     
         </div>
         
