@@ -63,7 +63,7 @@ function checkfunc(e){
     colDiv.id = "chart"+e.target.id
 
     let slidediv = document.createElement("img")
-    slidediv.src = "customreportimages/"+e.target.id+".png"
+    slidediv.src = "https://github.com/Sushmitha-Katti/sushmitha-katti.github.io/tree/master/customreportimages"+e.target.id+".png"
     slidediv.className = "slide"
     slidediv.id = "slide-chart"+e.target.id
     colDiv.style.height = 130+"px"
