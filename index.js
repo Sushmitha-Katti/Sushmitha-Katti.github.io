@@ -62,17 +62,18 @@ function checkfunc(e){
     colDiv.className = "col-md-3 float-left"+" chart"
     colDiv.id = "chart"+e.target.id
 
-    let slidediv = document.createElement("div")
+    let slidediv = document.createElement("img")
+    slidediv.src = "customreportimages/"+e.target.id+".png"
     slidediv.className = "slide"
     slidediv.id = "slide-chart"+e.target.id
     colDiv.style.height = 130+"px"
     // colDiv.style.width = o.width+"px"
     slidediv.style.height = (130-30)+"px"
     // slidediv.style.width = (o.width-30)+"px"
-    let text = document.createTextNode(e.target.value)
-    let htag = document.createElement('h1')
-    htag.appendChild(text)
-    slidediv.appendChild(htag)
+    // let text = document.createTextNode(e.target.value)
+    // let htag = document.createElement('h1')
+    // htag.appendChild(text)
+    // slidediv.appendChild(htag)
     colDiv.appendChild(slidediv)
     
     main.appendChild(colDiv)
