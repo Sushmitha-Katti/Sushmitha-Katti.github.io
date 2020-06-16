@@ -63,11 +63,11 @@ function checkfunc(e){
     colDiv.id = "chart"+e.target.id
 
     let slidediv = document.createElement("img")
-    slidediv.src = "https://github.com/Sushmitha-Katti/sushmitha-katti.github.io/tree/master/customreportimages"+e.target.id+".png"
+    slidediv.src = "https://github.com/Sushmitha-Katti/sushmitha-katti.github.io/tree/master/customreportimages/"+e.target.id+".png"
     slidediv.className = "slide"
     slidediv.id = "slide-chart"+e.target.id
     colDiv.style.height = 130+"px"
-    // colDiv.style.width = o.width+"px"
+    // //colDiv.style.width = o.width+"px"
     slidediv.style.height = (130-30)+"px"
     // slidediv.style.width = (o.width-30)+"px"
     // let text = document.createTextNode(e.target.value)
