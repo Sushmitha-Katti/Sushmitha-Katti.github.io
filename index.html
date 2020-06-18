@@ -30,6 +30,7 @@
   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
   <script src=".Static/js/vendors.bundle.js"></script>
   <script src="Static/js/app.bundle.js"></script>
+ 
   <script src = "./index.js"></script>
   
 
@@ -43,17 +44,16 @@
     .chart{
         border: 1px solid black;
         margin: 10px;
+        padding: 0px;
+        width: inherit;
     }
     
     .slide{
         
-        /* height: 100px; */
-        /* border: 1px solid #dadada; */
-        margin:16px auto;
-        width:90%;
+        margin:0px auto;
+        width:100%;
         text-align: center;
-        padding: 25px;
-        /* background: linear-gradient(to bottom, #9999ff 0%, #ff99cc 100%); */
+        
         
     }
     .btn-save{
@@ -66,7 +66,7 @@
     .collapse-button{
 
         
-        border-bottom: 1px solid #dadada;
+        
         padding: 5px 0px;
         cursor: pointer;
 
@@ -75,15 +75,33 @@
         border-right: 2px solid #adadad;
         height: 100vh;
         overflow: auto;
-        padding : 0px 10px;
+        padding : 0px 20px;
+        
     }
     .fa-plus{
     margin-right: 10px;
+    font-size: small;
     
+    }
+     .fa-caret-down{
+        margin-right: 10px;
     }
     .collapse-button{
         font-weight: bold;
     }
+    .collapse-button{
+        font-weight: bold;
+    }
+   
+    .checkinput{
+        visibility: hidden;
+    }
+    .labelinput{
+        cursor: pointer;
+    }
+    .checkinput:checked + .labelinput {
+     color:red
+}
 
   </style>
   
@@ -128,14 +146,15 @@
    function savefn() {
     var ids1 = $('.charts .chart').map(function(){
     
-    return {id: this.id, class : this.className.split(" ")[0]+this.className.split(" ")[1],value: this.textContent,height:this.style.height}
+    return {id: this.id, class : this.className.split(" ")[0]+" "+this.className.split(" ")[1],value: this.textContent,height:this.style.height, width :this.style.width }
     
 
     
 }).get()
+
 let textlist = ""
 
-ids1.map(id => textlist=textlist+"  ,  "+id.id)
+ids1.map(id => textlist=textlist+'<li>'+id.id+'   '+id.height+'   '+id.width+'</li>')
 console.log(ids1)
 document.getElementById('displaytext').innerHTML = textlist
 
@@ -153,7 +172,7 @@ document.getElementById('displaytext').innerHTML = textlist
 //--------------------------------------Display IDS--------------------------------------------------------
 
     let displayEle = document.getElementById('displayids')
-    let divElement = document.createElement('h2');
+    let divElement = document.createElement('ul');
     divElement.id = "displaytext"
     let idlist = ""
     ids.map(id => idlist=idlist+"  ,  "+id)

@@ -18,9 +18,10 @@ $(document).ready(function(){
       let card = document.createElement("div")
       card.className = "collapse"
       card.id = "collapse"+Object.keys(graphs)[0]
-      collapse.innerHTML = '<i class=" fa fa-plus" aria-hidden="true"></i>';
      
+      collapse.innerHTML = '<i class="fa fa-caret-down" aria-hidden="true"></i>'
       collapse.appendChild(reportText)
+    
       main.appendChild(collapse)
       main.appendChild(card)
 
@@ -33,12 +34,16 @@ $(document).ready(function(){
             check.id = graph.id
             check.type = "checkbox"
             check.name = "check"
+          
             check.value = graph.value
             check.setAttribute("style", "margin:"+5+"px ;");
             check.addEventListener("change", checkfunc);
             let label = document.createElement("label")
+            label.innerHTML = '<i class="fa fa-plus" aria-hidden="true"></i>'
+            label.className = "labelinput"
             let text = document.createTextNode(graph.value)
             let breaktag = document.createElement("br")
+            label.htmlFor = graph.id
             label.appendChild(text)
             card.appendChild(check)
             card.appendChild(label)
@@ -56,7 +61,7 @@ function checkfunc(e){
     if(e.target.checked === true)
     {
 
-   
+    console.log('Target = ' + e.target.id)
     let main = document.getElementById('sortable')
     let colDiv = document.createElement("div")
     colDiv.className = "col-md-3 float-left"+" chart"
@@ -68,7 +73,7 @@ function checkfunc(e){
     slidediv.id = "slide-chart"+e.target.id
     colDiv.style.height = 130+"px"
     // //colDiv.style.width = o.width+"px"
-    slidediv.style.height = (130-30)+"px"
+    slidediv.style.height = (130)+"px"
     // slidediv.style.width = (o.width-30)+"px"
     // let text = document.createTextNode(e.target.value)
     // let htag = document.createElement('h1')
@@ -89,12 +94,6 @@ function checkfunc(e){
     }
 
     }
-
-  
-
-
-
-
 
 })
  function applyresize(element){
@@ -125,7 +124,7 @@ element.resizable({
         
         var finalnewheight = absolute*130 +(absolute-1)*10*2
         // console.log("adsfdf",hofparent,newhofparent,absolute,finalnewheight)
-        var newheight = finalnewheight - 30
+        var newheight = finalnewheight
         // console.log(newheight,oldheight,hofparent,newhofparent )
 
          $("#slide-"+ui.element.context.id).css("height", newheight+"px")
