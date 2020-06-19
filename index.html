@@ -146,7 +146,7 @@
    function savefn() {
     var ids1 = $('.charts .chart').map(function(){
     
-    return {id: this.id, class : this.className.split(" ")[0]+" "+this.className.split(" ")[1],value: this.textContent,height:this.style.height, width :this.style.width }
+    return {id: this.id, class : this.className,value: this.textContent,height:parseInt(this.style.height.split("p")[0]) }
     
 
     
@@ -154,7 +154,7 @@
 
 let textlist = ""
 
-ids1.map(id => textlist=textlist+'<li>'+id.id+'   '+id.height+'   '+id.width+'</li>')
+ids1.map(id => textlist=textlist+'<li>'+id.id+'   |  '+id.class.split(" ")[0]+'   |   '+Math.floor((id.height+20)/150)+'</li>')
 console.log(ids1)
 document.getElementById('displaytext').innerHTML = textlist
 
